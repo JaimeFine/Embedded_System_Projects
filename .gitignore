@@ -1,2 +1,30 @@
 led_control/src/global
 led_control/src/hardware
+# PlatformIO build and config folders
+*/.pio/
+*/.pioenvs/
+*/.piolibdeps/
+*/.piomemcache/
+*/.pioshared/
+
+# Compiled binaries and firmware
+*.elf
+*.bin
+*.hex
+*.map
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Python virtual environments (if used)
+venv/
+__pycache__/
+*.pyc
