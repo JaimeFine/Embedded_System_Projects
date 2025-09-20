@@ -1,11 +1,11 @@
 led_control/src/global
 led_control/src/hardware
 # PlatformIO build and config folders
-*/.pio/
-*/.pioenvs/
-*/.piolibdeps/
-*/.piomemcache/
-*/.pioshared/
+.pio/
+.pioenvs/
+.piolibdeps/
+.piomemcache/
+.pioshared/
 
 # Compiled binaries and firmware
 *.elf
