@@ -53,6 +53,8 @@ You can ask AI for how to make the project work on your system!
 | breath | Starts the breathing (fading) effect. |
 | flash | Starts the flashing (blinking) effect. |
 
-## Code Notes
+-----
+
+## ✒️ Code Notes
 
 The code uses the ledc peripheral for Pulse Width Modulation (PWM) to control the LED's brightness, which is essential for the breathing effect. While the code includes a flash() function, the actual flashing logic is handled directly in the loop() function, a more non-blocking and effective approach.
