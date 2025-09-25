@@ -1,6 +1,6 @@
 /*
-This is the code for the Raspberry pi project,
-servo & camera...
+This code is actually a copy of the servos control code in my other 
+repository "A_Simple_Gesture_Recognition_Model"
 */
 
 #include <iostream>
@@ -181,7 +181,7 @@ void handleCommands(std::string command) {
 int main() {
 	BasicSetups basicset;
 	basicset.setup();
-	std::cout << "Hello, I am SP4, what's up!" << std::endl;
+	std::cout << "Hello, I am servos twin, what's up!" << std::endl;
 	std::cout << "Try input Nod, Shake and Tease! For leaving, enter Exit!" << std::endl;
 	std::string command;
 	command = {0};
