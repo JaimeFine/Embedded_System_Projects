@@ -1,4 +1,4 @@
-# Arduino Serial LED Controller
+# Platformio & ESP32 Serial LED Controller
 
 This project provides a simple way to control the behavior of an LED using the Arduino Serial Monitor. By sending simple commands from your computer, you can turn the LED on or off, make it "breathe" (fade in and out), or make it flash.
 
