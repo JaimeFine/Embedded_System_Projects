@@ -1,6 +1,6 @@
 # Raspberry Pi Controlled Servos Project
 
-This project controls two servo motors connected to a Raspberry Pi using the `pigpio` library. It simulates expressive head movements like nodding, shaking, and teasing—perfect for robotics, interactive installations, or embedded AI companions.
+This project controls two servo motors connected to a Raspberry Pi 4 using the `pigpio` library. It simulates expressive head movements like nodding, shaking, and teasing—perfect for robotics, interactive installations, or embedded AI companions.
 
 ---
 
@@ -16,11 +16,10 @@ This project controls two servo motors connected to a Raspberry Pi using the `pi
 
 ## 🧰 Hardware Requirements
 
-- Raspberry Pi (any model with GPIO support)
+- Raspberry Pi (any model with GPIO support, I am using 4)
 - 2x Servo motors
 - External power supply for servos (recommended)
 - Jumper wires and breadboard (optional)
-- Camera module (optional, not yet integrated)
 
 ---
 
@@ -29,7 +28,7 @@ This project controls two servo motors connected to a Raspberry Pi using the `pi
 - C++17 or later
 - [pigpio library](http://abyz.me.uk/rpi/pigpio/) (must be installed and daemon running)
 
-Install pigpio:
+To Install pigpio:
 
 ```bash
 sudo apt update
@@ -44,23 +43,23 @@ sudo systemctl start pigpiod
 Compile the code:
 
 ```bash
-g++ -std=c++17 -lpigpio -lpthread -o sp4 main.cpp
+g++ main.cpp -o main
 ```
 
 Run the program:
 
 ```bash
-./sp4
+./main
 ```
 
 ---
 
 ## 🎮 Usage
 
-Once launched, SP4 greets you and awaits commands:
+Once launched, the servos twin greets you and awaits commands:
 
 ```text
-Hello, I am SP4, what's up!
+Hello, I am servos twin, what's up!
 Try input Nod, Shake and Tease! For leaving, enter Exit!
 ```
 
@@ -125,7 +124,3 @@ Nodding...
 
 This project is open-source under the MIT License.  
 Feel free to modify, distribute, and build upon it.
-
----
-
-Let me know if you'd like help integrating the camera module or expanding the gesture set!
