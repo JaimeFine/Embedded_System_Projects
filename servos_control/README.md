@@ -59,7 +59,7 @@ Run the program:
 Once launched, the servos twin greets you and awaits commands:
 
 ```text
-Hello, I am servos twin, what's up!
+Hello, I am SP4, what's up!
 Try input Nod, Shake and Tease! For leaving, enter Exit!
 ```
 
