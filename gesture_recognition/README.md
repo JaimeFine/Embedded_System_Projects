@@ -1,115 +1,110 @@
-# 🤖 SP4: Raspberry Pi Servo & Camera Control
+# Raspberry Pi Camera Gesture Recognition
 
-This project controls two servo motors connected to a Raspberry Pi using the `pigpio` library. It simulates expressive head movements like nodding, shaking, and teasing—ideal for embedded robotics, interactive installations, or AI companions.
+This project implements **real-time hand gesture recognition** on a Raspberry Pi using the **PiCamera2**, **OpenCV**, and **MediaPipe** for hand tracking, combined with a **scikit-learn SVM classifier**.
+It allows you to **capture hand landmark data**, **train a gesture recognition model**, and **perform live gesture classification**.
 
----
+## 📦 Features
 
-## 📦 Requirements
+* ✅ **Hand Landmark Capture** – Record landmark data for different gestures using MediaPipe.
+* ⚙️ **Custom Gesture Training** – Train your own SVM model on collected gestures.
+* 🎥 **Real-Time Recognition** – Recognize gestures from live PiCamera2 input and overlay results on the video feed.
 
-- Raspberry Pi (any model with GPIO support)
-- 2x Servo motors
-- External power supply for servos (recommended)
-- `pigpio` library installed and daemon running
-- C++17 or later
-
----
-
-## 🛠️ Setup Instructions
-
-### 1. Install Dependencies
+## 🛠️ Installation
 
 ```bash
-sudo apt update
-sudo apt install pigpio
-sudo systemctl start pigpiod
+# Clone the repo
+git clone https://github.com/yourusername/raspberry-pi-gesture-recognition.git
+cd raspberry-pi-gesture-recognition
+
+# Install dependencies
+pip install [dependencies]
 ```
 
-### 2. Build the Project
+> Dependencies include:
+>
+> * `opencv-python`
+> * `mediapipe`
+> * `numpy`
+> * `scikit-learn`
+> * `picamera2`
+
+## ▶️ Usage
+
+### 1. Capture Gesture Data
+
+Run the capture script to log landmark data for a specific gesture (e.g., 5-finger hand):
 
 ```bash
-g++ -std=c++17 -lpigpio -lpthread -o sp4 main.cpp
+python src/gesture_capture.py
 ```
 
-### 3. Run the Program
+👉 Saves data as `.npy` files inside `gesture_recognition_pack/`.
+
+### 2. Train the Model
+
+After collecting gesture datasets:
 
 ```bash
-./sp4
+python src/training_program.py
 ```
 
----
+👉 Outputs `svm_model.pkl` (your trained classifier).
 
-## 📁 Project Structure
-
-```
-.
-├── main.cpp          # Core logic and command interface
-├── README.md         # Project documentation
-```
-
----
-
-## 🧠 Code Overview
-
-### `BasicSetups` Class
-
-Handles GPIO initialization and servo movement:
-
-- `setup()` — Initializes pigpio and sets servo pins
-- `moveServo(pin, pulse)` — Sends pulse width to servo with bounds checking
-- Gesture methods:
-  - `NodUp200`, `NodDown400`, etc.
-  - `ShakeLeft200`, `ShakeRight400`, etc.
-
-### Gesture Functions
-
-- `Nodding(bool Words)` — Simulates agreement
-- `Shaking(bool Words)` — Simulates disagreement
-- `Teasing()` — Runs nod and shake in parallel threads
-
-### Command Handling
-
-- `handleCommands(std::string)` — Parses user input and triggers gestures
-- Supported commands: `Nod`, `Shake`, `Tease`, `Exit`
-
----
-
-## 🎮 Usage
-
-After launching, SP4 greets you and awaits input:
-
-```text
-Hello, I am SP4, what's up!
-Try input Nod, Shake and Tease! For leaving, enter Exit!
-```
-
-Example interaction:
+### 3. Recognize Gestures in Real-Time
 
 ```bash
-> Nod
-Agreed!
-Nodding...
+python src/gesture_recognition.py
 ```
 
----
+👉 Displays PiCamera feed with recognized gestures (`Hand`, `Fist`, `Thumb`, `2Finger`, `3Finger`, `4Finger`, `5Finger`).
+Press **q** to quit.
 
-## 🧪 Servo Safety
+### 4. Logging Hand Data (optional)
 
-- Pulse widths are clamped between 500 and 2500 µs
-- Neutral position is 1300 µs (reset after each gesture)
-- Final shutdown resets both servos to 1500 µs
+```bash
+python src/logging_hand_data.py
+```
 
----
+👉 Continuously logs landmarks with visualization.
 
-## 🧩 Future Enhancements
+## ⚙️ Configuration
 
-- Integrate PiCamera for vision-based gestures
-- Add voice recognition or speech synthesis
-- Expand gesture vocabulary
-- Web or mobile interface
+Adjust paths and filenames for `.npy` gesture datasets or `svm_model.pkl` inside the scripts if needed.
 
----
+Default gesture classes:
+
+```
+0 – Hand
+1 – Fist
+2 – Thumb
+3 – 2Finger
+4 – 3Finger
+5 – 4Finger
+6 – 5Finger
+```
+
+## 🧠 Code Structure
+
+```
+src/
+├── gesture_capture.py          # Capture landmark data for a gesture
+├── logging_hand_data.py        # Live logging of landmarks
+├── training_program.py         # Train SVM model on captured gestures
+├── gesture_recognition.py      # Real-time gesture recognition
+└── gesture_recognition_pack/   # Stores .npy datasets & trained model
+
+```
+
+## 🤝 Contributing
+
+We welcome contributions! Here’s how to get started:
+
+1. 🍴 Fork the repo
+2. 🛠️ Create your feature branch (`git checkout -b feature/foo`)
+3. ✅ Commit your changes (`git commit -am 'Add foo feature'`)
+4. 🚀 Push to the branch (`git push origin feature/foo`)
+5. 📬 Open a Pull Request
 
 ## 📄 License
 
-This project is licensed under the MIT License.  
-Feel free to modify, distribute, and build upon it.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
